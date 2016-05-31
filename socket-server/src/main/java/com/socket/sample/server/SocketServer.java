@@ -14,18 +14,18 @@ public class SocketServer extends Thread {
 	private ServerSocket serverSocket;
 	private Socket clientSocket;
 	private final static int PORT = 8079;
-	private final static long PROCESS_TIME=60000;
+	private final static long PROCESS_TIME = 60000;
+
 	public SocketServer() {
 		try {
 			serverSocket = new ServerSocket(PORT);
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+			logger.error("IOException",e);
 		}
 	}
 
 	@Override
-	public void run()
-	{
+	public void run() {
 		while (true) {
 			try {
 				logger.info("waiting...");
@@ -39,9 +39,9 @@ public class SocketServer extends Thread {
 				clientSocket.close();
 				logger.info("connection closed...");
 			} catch (IOException e) {
-				logger.error("IOException",e);
+				logger.error("IOException", e);
 			} catch (InterruptedException e) {
-				logger.error("InterruptedException",e);
+				logger.error("InterruptedException", e);
 			}
 		}
 	}
