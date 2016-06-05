@@ -5,12 +5,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import com.spring.sample.controller.SpringRestController;
 
 @Service
 public class SocketClient {
 
-	
+	Logger logger = LoggerFactory.getLogger(SpringRestController.class);
 	private final static String IP="127.0.0.1";
 	private final static int PORT=8079;
 	
@@ -24,7 +28,7 @@ public class SocketClient {
 			clientSocket.close();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("IOException",e);
 		}
 		return time;
 	}
